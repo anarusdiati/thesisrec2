@@ -1,0 +1,39 @@
+/*body {
+    background: url('https://lpkm.psikologi.ugm.ac.id/wp-content/uploads/2016/05/balairung-ugm-1.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }*/
+
+body {
+  display:flex; flex-direction:column; justify-content:center;
+  min-height:80vh;
+}
+
+h1{
+  text-align: center;
+  color: black;
+}
+
+.modal-body{
+  height:600px;
+  overflow:auto;
+}
+
+.form-inline .form-control {
+    display: inline-block;
+    width: 500px;
+    vertical-align: middle;
+}
+
+.center
+{
+ text-align: center;
+ list-style-position: inside;
+}
+ol.center li
+{
+ text-align: left;
+ margin-left: 35%;
+}

@@ -1,0 +1,382 @@
+<!--from Hans, modified-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+  <title>Thesis Recommendation System</title>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">Thesis Recommendation System</h1>
+    <!-- <p class="text-center">Get recommendation using your academic profile</p> -->
+    <div class="row align-items-center" style="height: 50vh;">
+      <div class="mx-auto col-10 col-md-8 col-lg-6">
+        <p>Get recommendation using your academic profile</p>
+        <p><b>Select your courses</b></p>
+        <form name='formMataKuliah' class="align-items-center" method="POST"
+          action="{{ url_for('byacademicprofile') }}">
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Advanced Computer Network"
+                onclick="checkcontrol(0)"> Advanced Computer Network </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Analysis of Algorithms"
+                onclick="checkcontrol(1)"> Analysis of Algorithms </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Big Data Platform and Architectures"
+                onclick="checkcontrol(2)"> Big Data Platform and Architectures </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Cloud Computing and Cybersecurity"
+                onclick="checkcontrol(3)"> Cloud Computing and Cybersecurity </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup"
+                value="Computational Intelligence and Machine Learning" onclick="checkcontrol(4)"> Computational Intelligence and Machine Learning </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Computer Systems for Industry"
+                onclick="checkcontrol(5)"> Computer Systems for Industry </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Cryptology" onclick="checkcontrol(6)"> Cryptology </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Data Science" onclick="checkcontrol(7)"> Data Science </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Data Warehouse and Business Intelligence"
+                onclick="checkcontrol(8)"> Data Warehouse and Business Intelligence </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Decision Support Systems"
+                onclick="checkcontrol(9)"> Decision Support Systems </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Digital Image Processing and Analysis"
+                onclick="checkcontrol(10)"> Digital Image Processing and Analysis </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Digital Intelligence and Social Informatics"
+                onclick="checkcontrol(11)"> Digital Intelligence and Social Informatics </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Electronic System Synthesis and Design"
+                onclick="checkcontrol(12)"> Electronic System Synthesis and Design </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Feature Engineering and Pattern Recognition"
+                onclick="checkcontrol(13)"> Feature Engineering and Pattern Recognition </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Information Retrieval Systems"
+                onclick="checkcontrol(14)"> Information Retrieval Systems </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Information System Management and Audit"
+                onclick="checkcontrol(15)"> Information System Management and Audit </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Mathematics for Computer Science"
+                onclick="checkcontrol(16)"> Mathematics for Computer Science </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Modern Control System"
+                onclick="checkcontrol(17)"> Modern Control System </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Operation Research"
+                onclick="checkcontrol(18)"> Operation Research </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Principle of Artificial Intelligence"
+                onclick="checkcontrol(19)"> Principle of Artificial Intelligence </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Robotic Programming"
+                onclick="checkcontrol(20)"> Robotic Programming </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Signal and Systems"
+                onclick="checkcontrol(21)"> Signal and Systems </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Software Engineering"
+                onclick="checkcontrol(22)"> Software Engineering </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Special Topics on Computer Science"
+                onclick="checkcontrol(23)"> Special Topics on Computer Science </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Theory of Computation"
+                onclick="checkcontrol(24)"> Theory of Computation </label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" class="mk" name="rGroup" value="Verification and Validation"
+                onclick="checkcontrol(25)"> Verification and Validation </label>
+          </div>
+          <!-- <button type="button" class="btn btn-primary btn-sm">Next</button> -->
+          <button type="button" class="btn btn-primary mb-5" data-toggle="modal" data-target=".input-nilai"
+            onclick="getData()" style="float: right;">Next</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade input-nilai" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" style="max-width: 80%;">
+        <div class="modal-content">
+          <div class="modal-header" style="align-items: center;">
+            <h5 class="modal-title" id="exampleModalLongTitle">Academic Profile</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="reset()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form>
+            <div class="modal-body">
+              <p>Insert your score for each selected courses</p>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>
+                      <p class="matkul"></p>
+                    </td>
+                    <td>
+                      <select class="nilai" id="selectScore">
+                        <option value="none" selected disabled hidden>Select score</option>
+                        <option value="4.00">A</option>
+                        <option value="3.75">A-</option>
+                        <option value="3.50">A/B</option>
+                        <option value="3.25">B+</option>
+                        <option value="3.00">B</option>
+                        <option value="2.75">B-</option>
+                        <option value="2.50">B/C</option>
+                        <option value="2.25">C+</option>
+                        <option value="2.00">C</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>
+                      <p class='matkul'></p>
+                    </td>
+                    <td>
+                      <select class="nilai" id="selectScore">
+                        <option value="none" selected disabled hidden>Select score</option>
+                        <option value="4.00">A</option>
+                        <option value="3.75">A-</option>
+                        <option value="3.50">A/B</option>
+                        <option value="3.25">B+</option>
+                        <option value="3.00">B</option>
+                        <option value="2.75">B-</option>
+                        <option value="2.50">B/C</option>
+                        <option value="2.25">C+</option>
+                        <option value="2.00">C</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>
+                      <p class='matkul'></p>
+                    </td>
+                    <td>
+                      <select class="nilai" id="selectScore">
+                        <option value="none" selected disabled hidden>Select score</option>
+                        <option value="4.00">A</option>
+                        <option value="3.75">A-</option>
+                        <option value="3.50">A/B</option>
+                        <option value="3.25">B+</option>
+                        <option value="3.00">B</option>
+                        <option value="2.75">B-</option>
+                        <option value="2.50">B/C</option>
+                        <option value="2.25">C+</option>
+                        <option value="2.00">C</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>
+                      <p class='matkul'></p>
+                    </td>
+                    <td>
+                      <select class="nilai" id="selectScore">
+                        <option value="none" selected disabled hidden>Select score</option>
+                        <option value="4.00">A</option>
+                        <option value="3.75">A-</option>
+                        <option value="3.50">A/B</option>
+                        <option value="3.25">B+</option>
+                        <option value="3.00">B</option>
+                        <option value="2.75">B-</option>
+                        <option value="2.50">B/C</option>
+                        <option value="2.25">C+</option>
+                        <option value="2.00">C</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>
+                      <p class='matkul'></p>
+                    </td>
+                    <td>
+                      <select class="nilai" id="selectScore">
+                        <option value="none" selected disabled hidden>Select score</option>
+                        <option value="4.00">A</option>
+                        <option value="3.75">A-</option>
+                        <option value="3.50">A/B</option>
+                        <option value="3.25">B+</option>
+                        <option value="3.00">B</option>
+                        <option value="2.75">B-</option>
+                        <option value="2.50">B/C</option>
+                        <option value="2.25">C+</option>
+                        <option value="2.00">C</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">6</th>
+                    <td>
+                      <p class='matkul'></p>
+                    </td>
+                    <td>
+                      <select class="nilai" id="selectScore">
+                        <option value="none" selected disabled hidden>Select score</option>
+                        <option value="4.00">A</option>
+                        <option value="3.75">A-</option>
+                        <option value="3.50">A/B</option>
+                        <option value="3.25">B+</option>
+                        <option value="3.00">B</option>
+                        <option value="2.75">B-</option>
+                        <option value="2.50">B/C</option>
+                        <option value="2.25">C+</option>
+                        <option value="2.00">C</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">7</th>
+                    <td>
+                      <p class='matkul'></p>
+                    </td>
+                    <td>
+                      <select class="nilai" id="selectScore">
+                        <option value="none" selected disabled hidden>Select score</option>
+                        <option value="4.00">A</option>
+                        <option value="3.75">A-</option>
+                        <option value="3.50">A/B</option>
+                        <option value="3.25">B+</option>
+                        <option value="3.00">B</option>
+                        <option value="2.75">B-</option>
+                        <option value="2.50">B/C</option>
+                        <option value="2.25">C+</option>
+                        <option value="2.00">C</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".rekomendasi" onclick="getNilai()" style="float: right;" data-dismiss="modal">Get Recommendation</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade rekomendasi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="max-width: 80%;">
+      <div class="modal-content">
+        <div class="modal-header" style="align-items: center;">
+          <h5 class="modal-title" id="exampleModalLongTitle">Result</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="reset()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5 class="mb-3"><b>Recommended Topics</b></h5>
+          <p class='Keyword'></p>
+          <h5 class="mt-5 mb-3"><b>Recommended Supervisors</b></h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Supervisor</th>
+                <th scope="col">Quota</th>
+                <th scope="col">Most Related Previous Research</th>
+              </tr>
+            </thead>
+            <tbody class='tbody'>
+              <tr>
+                <th scope="row">1</th>
+                <td><p class='Dosen'></p></td>
+                <td><p class='Quota'></p></td>
+                <td><p class='Title'></p></td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td><p class='Dosen'></p></td>
+                <td><p class='Quota'></p></td>
+                <td><p class='Title'></p></td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td><p class='Dosen'></p></td>
+                <td><p class='Quota'></p></td>
+                <td><p class='Title'></p></td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td><p class='Dosen'></p></td>
+                <td><p class='Quota'></p></td>
+                <td><p class='Title'></p></td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td><p class='Dosen'></p></td>
+                <td><p class='Quota'></p></td>
+                <td><p class='Title'></p></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reset()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

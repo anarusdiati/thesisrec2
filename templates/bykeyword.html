@@ -1,0 +1,31 @@
+<!--from Hans, modified-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+  <title>Thesis Recommendation System</title>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-5">Thesis Recommendation System</h1>
+    <p class="text-center">Get recommendation using keywords</p>
+    <form class="form-inline justify-content-center" method="POST"action="{{ url_for('bykeyword') }}">
+      <div class="form-group mx-sm-3 mb-1">
+        <label for="query" class="sr-only">Enter your query:</label>
+        <input type="text" class="form-control" name="query" id="query" placeholder="Enter your query">
+      </div>
+      <button type="submit" class="btn btn-primary">Get Recommendation</button>
+    </form>
+  </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

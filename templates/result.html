@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recommender System</title>
+    <!-- Add the Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+      /* Style the table header */
+      .table th {
+        text-align: center;
+        background-color: #343a40;
+        color: #fff;
+        font-size: 20px;
+      }
+      /* Style the table rows */
+      .table td {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 18px;
+      }
+      /* Style the links */
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-4 mb-4">Recommended Topics and Supervisor</h1>
+      <h4 class="mb-4">Recommended Topics</h4>
+      {{ unique_keywords }}
+      <h4 class="mt-4 mb-4">Recommended Supervisors</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <!--<th>Topics</th>-->
+            <th>Supervisor</th>
+            <th>Quota</th>
+            <th>Most Related Previous Research</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lecturer in recommendations %}
+          <tr>
+            <td><b>{{ lecturer['Dosen'] }}</b></td>
+            <td>{{ lecturer['Quota'] }}</td>
+            <td>{{ lecturer['Title'] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <!-- Add the Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
