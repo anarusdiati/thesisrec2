@@ -7,3 +7,6 @@ run:
 init:
 	python3 -m venv venv
 	. venv/bin/activate
+
+install:
+	pip3 install -r requirements.txt
