@@ -17,6 +17,8 @@ import string
 import nltk
 import math
 
+nltk.data.path.append("/app")
+
 app = Flask(__name__)
 
 
@@ -115,7 +117,7 @@ def recommend_by_academicprofile(inputan):
     corpus = dataset['Abstract'].tolist()
     corpus = preprocess_corpus(dataset['Abstract'].tolist())
 
-    #list_publikasi_clean = np.array(corpus)
+    # list_publikasi_clean = np.array(corpus)
 
     # normalize & TF-IDF
     vectorizer = TfidfVectorizer()
@@ -128,7 +130,8 @@ def recommend_by_academicprofile(inputan):
     # KMEANS MODEL
     # kmeans = KMeans(n_clusters = 51, init = 'k-means++', max_iter = 300, n_init = 10, random_state = 0)
 
-    similarity_matrix = 1 / (1 + euclidean_distances(X_normalized, X_normalized))
+    similarity_matrix = 1 / \
+        (1 + euclidean_distances(X_normalized, X_normalized))
     labels = dbscan.fit_predict(similarity_matrix)
     # labels = kmeans.fit_predict(similarity_matrix)
 
@@ -169,14 +172,14 @@ def recommend_by_academicprofile(inputan):
         '', '', string.punctuation)).lower() for text in user_input]
 
     # remove stop words
-    nltk.download('stopwords')
+    # nltk.download('stopwords')
     stop_words = set(stopwords.words('english'))
     user_input = [[word for word in text.split() if word not in stop_words]
                   for text in user_input]
 
     # convert text into numerical vectors using TF-IDF
     X_silabus = vectorizer.transform([' '.join(text) for text in user_input])
-    #X_silabus = vectorizer.transform([user_input])
+    # X_silabus = vectorizer.transform([user_input])
 
     X_silabus_weighted = []
     for i in range(len(mata_kuliah_pilihan)):
@@ -186,7 +189,8 @@ def recommend_by_academicprofile(inputan):
 
     X_normalized_silabus = normalize(X_silabus_weighted)
 
-    similarities = 1 / (1 + euclidean_distances(X_normalized_silabus, X_normalized)[0])
+    similarities = 1 / \
+        (1 + euclidean_distances(X_normalized_silabus, X_normalized)[0])
     labels_dbscan = dbscan.fit_predict(similarity_matrix)
 
     # Find nearest cluster and rank lecturers
@@ -214,6 +218,7 @@ def recommend_by_academicprofile(inputan):
     recommendations = final_result[:5]
 
     return recommendations
+
 
 @app.route('/', methods=['GET'])
 def index():
@@ -265,6 +270,7 @@ def result_byacademicprofile():
         return jsonify({'recommendations': recommendations, 'unique_keywords': unique_keywords})
     except Exception as e:
         return jsonify({'error': str(e)})
+
 
 if __name__ == '__main__':
     app.run()
