@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 def recommend_by_keyword(query):
     # load dataset
-    dataset = pd.read_excel('Dataset Gabungan.xlsx')
+    dataset = pd.read_excel('datasets/Dataset Gabungan.xlsx')
 
     data = np.array(dataset)
     list_abstract = dataset['Abstract']
@@ -100,7 +100,7 @@ def get_keyword(recommendations):
 
 def recommend_by_academicprofile(inputan):
     # LOAD DATASET ABSTRACT
-    dataset = pd.read_excel('Dataset Gabungan.xlsx')
+    dataset = pd.read_excel('datasets/Dataset Gabungan.xlsx')
 
     data = np.array(dataset)
     list_abstract = dataset['Abstract']
@@ -133,7 +133,7 @@ def recommend_by_academicprofile(inputan):
     # labels = kmeans.fit_predict(similarity_matrix)
 
     # LOAD DATASET SILABUS
-    dataset_silabus = pd.read_excel('Dataset Silabus.xlsx')
+    dataset_silabus = pd.read_excel('datasets/Dataset Silabus.xlsx')
     list_mata_kuliah = dataset_silabus['Course Name']
     list_silabus_data = dataset_silabus['Syllabus']
 
