@@ -12,4 +12,4 @@ install:
 	pip3 install -r requirements.txt
 
 build:
-	docker build -t bintangbahy/anarusdianti:latest .
+	docker build -t bintangbahy/courecsy-anarusdianti:latest .
