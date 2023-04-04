@@ -10,3 +10,6 @@ init:
 
 install:
 	pip3 install -r requirements.txt
+
+build:
+	docker build -t bintangbahy/anarusdianti:latest .
