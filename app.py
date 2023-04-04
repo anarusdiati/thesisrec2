@@ -17,8 +17,6 @@ import string
 import nltk
 import math
 
-nltk.data.path.append("/app")
-
 app = Flask(__name__)
 
 
